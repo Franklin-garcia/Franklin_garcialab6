@@ -8,6 +8,7 @@ package franklin_garcia_lab6;
 import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 
 /**
  *
@@ -22,11 +23,11 @@ public class Personas {
     protected String nombre;
     protected Color color;
     protected ArrayList<Familiares> familiar;
-    protected DefaulTreeModel arbol;
+    protected DefaultTreeModel arbol;
     public Personas() {
     }
 
-    public Personas(int edad, int ID, String nacionalidad, String lugar_nacimiento, String nombre, Color color, ArrayList familiar) {
+    public Personas(int edad, int ID, String nacionalidad, String lugar_nacimiento, String nombre, Color color, ArrayList<Familiares> familiar, DefaultTreeModel arbol) {
         this.edad = edad;
         this.ID = ID;
         this.nacionalidad = nacionalidad;
@@ -34,7 +35,9 @@ public class Personas {
         this.nombre = nombre;
         this.color = color;
         this.familiar = familiar;
+        this.arbol = arbol;
     }
+
 
     public int getEdad() {
         return edad;
@@ -92,11 +95,11 @@ public class Personas {
         this.familiar = familiar;
     }
 
-    public DefaultMutableTreeNode getArbol() {
+    public DefaultTreeModel getArbol() {
         return arbol;
     }
 
-    public void setArbol(DefaultMutableTreeNode arbol) {
+    public void setArbol(DefaultTreeModel arbol) {
         this.arbol = arbol;
     }
 
