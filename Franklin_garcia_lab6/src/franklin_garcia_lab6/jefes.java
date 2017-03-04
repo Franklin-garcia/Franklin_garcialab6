@@ -66,5 +66,10 @@ public class jefes extends Personas{
     public void setGanancia(int ganancia) {
         this.ganancia = ganancia;
     }
+
+    @Override
+    public String toString() {
+        return nombre;
+    }
     
 }

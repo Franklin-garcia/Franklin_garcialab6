@@ -53,5 +53,10 @@ public class clientes extends Personas {
     public void setOrdenes(ArrayList<ordenes> ordenes) {
         this.ordenes = ordenes;
     }
+
+    @Override
+    public String toString() {
+        return nombre;
+    }
     
 }
