@@ -5,7 +5,9 @@
  */
 package franklin_garcia_lab6;
 
+import java.awt.Color;
 import java.util.ArrayList;
+import javax.swing.tree.DefaultTreeModel;
 
 /**
  *
@@ -24,12 +26,14 @@ public class jefes extends Personas{
         super();
     }
 
-    public jefes(String seccion_trabajo, ArrayList<empleado> lista_empleados, int atendidos, int ganancia) {
+    public jefes(String seccion_trabajo, ArrayList<empleado> lista_empleados, int atendidos, int ganancia, int edad, int ID, String nacionalidad, String lugar_nacimiento, String nombre, Color color, ArrayList<Familiares> familiar, DefaultTreeModel arbol) {
+        super(edad, ID, nacionalidad, lugar_nacimiento, nombre, color, familiar, arbol);
         this.seccion_trabajo = seccion_trabajo;
         this.lista_empleados = lista_empleados;
         this.atendidos = atendidos;
         this.ganancia = ganancia;
     }
+
 
     public String getSeccion_trabajo() {
         return seccion_trabajo;

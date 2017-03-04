@@ -5,7 +5,9 @@
  */
 package franklin_garcia_lab6;
 
+import java.awt.Color;
 import java.util.ArrayList;
+import javax.swing.tree.DefaultTreeModel;
 
 /**
  *
@@ -20,11 +22,13 @@ public class clientes extends Personas {
         super();
     }
 
-    public clientes(String ticket, int dinero, ArrayList<ordenes> ordenes) {
+    public clientes(String ticket, int dinero, ArrayList<ordenes> ordenes, int edad, int ID, String nacionalidad, String lugar_nacimiento, String nombre, Color color, ArrayList<Familiares> familiar, DefaultTreeModel arbol) {
+        super(edad, ID, nacionalidad, lugar_nacimiento, nombre, color, familiar, arbol);
         this.ticket = ticket;
         this.dinero = dinero;
         this.ordenes = ordenes;
     }
+
 
     public String getTicket() {
         return ticket;

@@ -6,7 +6,9 @@
 package franklin_garcia_lab6;
 
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.tree.DefaultTreeModel;
 
 /**
  *
@@ -15,7 +17,7 @@ import java.util.Date;
 public class empleado extends Personas {
     
     protected String seccion_trabajo;
-    protected Date entrada,salida;
+    protected String entrada,salida;
     protected int sueldo;
     protected String estado;
 
@@ -23,14 +25,14 @@ public class empleado extends Personas {
         super();
     }
 
-    public empleado(String seccion_trabajo, Date entrada, Date salida, int sueldo, String estado) {
+    public empleado(String seccion_trabajo, String entrada, String salida, int sueldo, String estado, int edad, int ID, String nacionalidad, String lugar_nacimiento, String nombre, Color color, ArrayList<Familiares> familiar, DefaultTreeModel arbol) {
+        super(edad, ID, nacionalidad, lugar_nacimiento, nombre, color, familiar, arbol);
         this.seccion_trabajo = seccion_trabajo;
         this.entrada = entrada;
         this.salida = salida;
         this.sueldo = sueldo;
         this.estado = estado;
     }
-
 
     public String getSeccion_trabajo() {
         return seccion_trabajo;
@@ -40,19 +42,19 @@ public class empleado extends Personas {
         this.seccion_trabajo = seccion_trabajo;
     }
 
-    public Date getEntrada() {
+    public String getEntrada() {
         return entrada;
     }
 
-    public void setEntrada(Date entrada) {
+    public void setEntrada(String entrada) {
         this.entrada = entrada;
     }
 
-    public Date getSalida() {
+    public String getSalida() {
         return salida;
     }
 
-    public void setSalida(Date salida) {
+    public void setSalida(String salida) {
         this.salida = salida;
     }
 
