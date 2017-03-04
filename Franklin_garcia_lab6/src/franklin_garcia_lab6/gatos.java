@@ -15,11 +15,13 @@ public class gatos extends articulos{
     public gatos() {
     }
 
-    public gatos(int peso, int altura) {
+    public gatos(int peso, int altura, int precio) {
+        super(precio);
         this.peso = peso;
         this.altura = altura;
     }
 
+    
     public int getPeso() {
         return peso;
     }
