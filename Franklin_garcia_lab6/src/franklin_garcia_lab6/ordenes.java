@@ -12,27 +12,22 @@ import java.util.ArrayList;
  * @author Franklin Garcia
  */
 public class ordenes {
-    protected ArrayList<articulos>articulos;
     protected int numero_articulos,dinero;
-    protected ArrayList<empleado>atiende;
-
+    protected String atiende;
+    protected  String clientes;
+    protected String tipo_articulo;
+    
     public ordenes() {
     }
 
-    public ordenes(ArrayList<articulos> articulos, int numero_articulos, int dinero, ArrayList<empleado> atiende) {
-        this.articulos = articulos;
+    public ordenes(int numero_articulos, int dinero, String atiende, String clientes, String tipo_articulo) {
         this.numero_articulos = numero_articulos;
         this.dinero = dinero;
         this.atiende = atiende;
+        this.clientes = clientes;
+        this.tipo_articulo = tipo_articulo;
     }
 
-    public ArrayList<articulos> getArticulos() {
-        return articulos;
-    }
-
-    public void setArticulos(ArrayList<articulos> articulos) {
-        this.articulos = articulos;
-    }
 
     public int getNumero_articulos() {
         return numero_articulos;
@@ -50,12 +45,27 @@ public class ordenes {
         this.dinero = dinero;
     }
 
-    public ArrayList<empleado> getAtiende() {
+    public String getTipo_articulo() {
+        return tipo_articulo;
+    }
+
+    public void setTipo_articulo(String tipo_articulo) {
+        this.tipo_articulo = tipo_articulo;
+    }
+
+    public String getAtiende() {
         return atiende;
     }
 
-    public void setAtiende(ArrayList<empleado> atiende) {
+    public void setAtiende(String atiende) {
         this.atiende = atiende;
     }
-    
+
+    public String getClientes() {
+        return clientes;
+    }
+
+    public void setClientes(String clientes) {
+        this.clientes = clientes;
+    }    
 }
