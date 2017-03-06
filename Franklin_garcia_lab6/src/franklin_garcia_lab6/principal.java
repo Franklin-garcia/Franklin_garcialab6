@@ -1477,7 +1477,7 @@ public class principal extends javax.swing.JFrame {
         String nacionalidad;
         String lugar_nacimineto;
         String nombre;
-        String color ;
+        String color;
         Familiares Padre = null;
         ArrayList hijos = lista_familiares;
 
@@ -1486,9 +1486,9 @@ public class principal extends javax.swing.JFrame {
         nacionalidad = cb_nacionalidad_f.getSelectedItem().toString();
         lugar_nacimineto = tf_nacimiento_f.getText();
         nombre = tf_nombre.getText();
-        color=cb_color_f.getSelectedItem().toString();
+        color = cb_color_f.getSelectedItem().toString();
         if (tab_agregar.getSelectedIndex() == 1) {
-            lista_familiares.add(new Familiares(edad, ID, nacionalidad, lugar_nacimineto, nombre,color, Padre, hijos));
+            lista_familiares.add(new Familiares(edad, ID, nacionalidad, lugar_nacimineto, nombre, color, Padre, hijos));
         }
         JOptionPane.showMessageDialog(this, "Se agrego con exito");
     }//GEN-LAST:event_boton_agregar_fMouseClicked
@@ -1518,25 +1518,38 @@ public class principal extends javax.swing.JFrame {
         String entrada, salida;
         int sueldo;
         String estado;
-        
-        
-        color=cb_color_p.getSelectedItem().toString();
+
+        color = cb_color_p.getSelectedItem().toString();
         edad = (Integer) sp_edad.getValue();
         ID = Integer.parseInt(tf_id.getText());
         nacionalidad = cb_nacionalidad_p.getSelectedItem().toString();
         lugar_nacimiento = tf_nacimiento.getText();
         nombre = tf_nombre.getText();
 
+        administrarPersonas ap = new administrarPersonas("personas.txt");
+
         if (tab_agregar.getSelectedIndex() == 0) {
             if (tab_personas.getSelectedIndex() == 0) {
+
                 ticket = tf_ticket.getText();
                 dinero = Integer.parseInt(tf_dinero.getText());
                 lista_personas.add(new clientes(ticket, dinero, ordenes, edad, ID, nacionalidad,
                         lugar_nacimiento, nombre, color, familiar, arbol));
+                
+                ap.setPersona(new clientes(ticket, dinero, ordenes, edad, ID, nacionalidad,
+                        lugar_nacimiento, nombre, color, familiar, arbol)); 
+                ap.escribirPersonas();
+                ap.cargarArchivo();
             } else if (tab_personas.getSelectedIndex() == 1) {
                 posicion_trabajo = cb_posicion.getSelectedItem().toString();
                 atendidos = (Integer) sp_atendidos.getValue();
                 ganancia = Integer.parseInt(tf_ganancia.getText());
+                
+                ap.setPersona(new jefes(posicion_trabajo, lista_empleados, atendidos,
+                        ganancia, edad, ID, nacionalidad, lugar_nacimiento, nombre, color, familiar, arbol));  
+                ap.escribirPersonas();
+                ap.cargarArchivo();
+                
                 lista_personas.add(new jefes(posicion_trabajo, lista_empleados, atendidos,
                         ganancia, edad, ID, nacionalidad, lugar_nacimiento, nombre, color, familiar, arbol));
             } else if (tab_personas.getSelectedIndex() == 2) {
@@ -1547,6 +1560,12 @@ public class principal extends javax.swing.JFrame {
                 estado = cb_estado.getSelectedItem().toString();
                 lista_personas.add(new empleado(seccion_trabajo, entrada, salida, sueldo, estado, edad, ID,
                         nacionalidad, lugar_nacimiento, nombre, color, familiar, arbol));
+                                
+                ap.setPersona(new empleado(seccion_trabajo, entrada, salida, sueldo, estado, edad, ID,
+                        nacionalidad, lugar_nacimiento, nombre, color, familiar, arbol));   
+                ap.escribirPersonas();
+                ap.cargarArchivo();
+
             }
         }
         ///agregado al Jtree
@@ -1562,9 +1581,6 @@ public class principal extends javax.swing.JFrame {
         raiz.add(nodo_personas);
         m.reload();
 
-       // administrarPersonas ap=new administrarPersonas("personas.txt");
-        
-        
         JOptionPane.showMessageDialog(this,
                 "Se agrego con exito");
     }//GEN-LAST:event_boton_agregar_pMouseClicked
@@ -1671,15 +1687,13 @@ public class principal extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "El directorio nos se creo");
                 }
                 cont++;
-            } else {
-                if (seleccion == JFileChooser.APPROVE_OPTION) {
-                    File dir = filechooser.getSelectedFile();
-                    boolean fueCreado = dir.mkdir();//make director
-                    if (fueCreado) {
-                        JOptionPane.showMessageDialog(this, "Directorio creado exitosamente");
-                    } else {
-                        JOptionPane.showMessageDialog(this, "El directorio nos se creo");
-                    }
+            } else if (seleccion == JFileChooser.APPROVE_OPTION) {
+                File dir = filechooser.getSelectedFile();
+                boolean fueCreado = dir.mkdir();//make director
+                if (fueCreado) {
+                    JOptionPane.showMessageDialog(this, "Directorio creado exitosamente");
+                } else {
+                    JOptionPane.showMessageDialog(this, "El directorio nos se creo");
                 }
             }
         }
@@ -1687,10 +1701,6 @@ public class principal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-
-    
-    
-    
     /**
      * @param args the command line arguments
      */
