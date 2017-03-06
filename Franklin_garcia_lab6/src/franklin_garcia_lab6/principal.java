@@ -1488,7 +1488,7 @@ public class principal extends javax.swing.JFrame {
         nombre = tf_nombre.getText();
         color=cb_color_f.getSelectedItem().toString();
         if (tab_agregar.getSelectedIndex() == 1) {
-            lista_familiares.add(new Familiares(edad, ID, nacionalidad, lugar_nacimineto, nombre, color, Padre, hijos));
+            lista_familiares.add(new Familiares(edad, ID, nacionalidad, lugar_nacimineto, nombre,color, Padre, hijos));
         }
         JOptionPane.showMessageDialog(this, "Se agrego con exito");
     }//GEN-LAST:event_boton_agregar_fMouseClicked

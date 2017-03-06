@@ -18,7 +18,7 @@ public class jefes extends Personas{
     //de trabajo (venta de gatos y venta de baleadas), una lista de empleados que trabajan 
     //en su misma sección, número de clientes atendidos y ganancia hasta el momento. 
     protected String seccion_trabajo;
-    protected ArrayList<empleado>lista_empleados;
+    protected ArrayList<empleado>lista_empleados=new ArrayList();
     protected int atendidos;
     protected int ganancia;
 
@@ -27,7 +27,7 @@ public class jefes extends Personas{
     }
 
     public jefes(String seccion_trabajo, ArrayList<empleado> lista_empleados, int atendidos, int ganancia, int edad, int ID, String nacionalidad, String lugar_nacimiento, String nombre, String color, ArrayList<Familiares> familiar, DefaultTreeModel arbol) {
-        super(edad, ID, nacionalidad, lugar_nacimiento, nombre, color, familiar, arbol);
+       super(edad, ID, nacionalidad, lugar_nacimiento, nombre, color, familiar, arbol);
         this.seccion_trabajo = seccion_trabajo;
         this.lista_empleados = lista_empleados;
         this.atendidos = atendidos;
