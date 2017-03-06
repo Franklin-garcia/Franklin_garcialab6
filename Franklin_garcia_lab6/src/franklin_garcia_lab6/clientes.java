@@ -22,7 +22,7 @@ public class clientes extends Personas {
         super();
     }
 
-    public clientes(String ticket, int dinero, ArrayList<ordenes> ordenes, int edad, int ID, String nacionalidad, String lugar_nacimiento, String nombre, Color color, ArrayList<Familiares> familiar, DefaultTreeModel arbol) {
+    public clientes(String ticket, int dinero, ArrayList<ordenes> ordenes, int edad, int ID, String nacionalidad, String lugar_nacimiento, String nombre, String color, ArrayList<Familiares> familiar, DefaultTreeModel arbol) {
         super(edad, ID, nacionalidad, lugar_nacimiento, nombre, color, familiar, arbol);
         this.ticket = ticket;
         this.dinero = dinero;

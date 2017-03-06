@@ -9,9 +9,12 @@ import java.awt.Color;
 import static java.awt.Color.black;
 import static java.awt.Color.blue;
 import static java.awt.Color.white;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Scanner;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JColorChooser;
 import javax.swing.JFileChooser;
@@ -1285,6 +1288,11 @@ public class principal extends javax.swing.JFrame {
 
         jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, 0));
         jMenuItem1.setText("Guardar");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem1);
 
         jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, 0));
@@ -1469,7 +1477,7 @@ public class principal extends javax.swing.JFrame {
         String nacionalidad;
         String lugar_nacimineto;
         String nombre;
-        Color color = white;
+        String color ;
         Familiares Padre = null;
         ArrayList hijos = lista_familiares;
 
@@ -1478,11 +1486,7 @@ public class principal extends javax.swing.JFrame {
         nacionalidad = cb_nacionalidad_f.getSelectedItem().toString();
         lugar_nacimineto = tf_nacimiento_f.getText();
         nombre = tf_nombre.getText();
-        if (cb_color_p.getSelectedItem().equals("negro")) {
-            color = black;
-        } else if (cb_color_p.getSelectedItem().equals("blanco")) {
-            color = white;
-        }
+        color=cb_color_f.getSelectedItem().toString();
         if (tab_agregar.getSelectedIndex() == 1) {
             lista_familiares.add(new Familiares(edad, ID, nacionalidad, lugar_nacimineto, nombre, color, Padre, hijos));
         }
@@ -1504,7 +1508,7 @@ public class principal extends javax.swing.JFrame {
         String nacionalidad;
         String lugar_nacimiento;
         String nombre;
-        Color color = white;
+        String color;
         ArrayList<Familiares> familiar = lista_familiares;
         DefaultTreeModel arbol = null;
         String ticket;
@@ -1514,13 +1518,9 @@ public class principal extends javax.swing.JFrame {
         String entrada, salida;
         int sueldo;
         String estado;
-
-        if (cb_color_p.getSelectedItem().equals("negro")) {
-            color = black;
-        } else if (cb_color_p.getSelectedItem().equals("blanco")) {
-            color = white;
-        }
-
+        
+        
+        color=cb_color_p.getSelectedItem().toString();
         edad = (Integer) sp_edad.getValue();
         ID = Integer.parseInt(tf_id.getText());
         nacionalidad = cb_nacionalidad_p.getSelectedItem().toString();
@@ -1562,6 +1562,9 @@ public class principal extends javax.swing.JFrame {
         raiz.add(nodo_personas);
         m.reload();
 
+       // administrarPersonas ap=new administrarPersonas("personas.txt");
+        
+        
         JOptionPane.showMessageDialog(this,
                 "Se agrego con exito");
     }//GEN-LAST:event_boton_agregar_pMouseClicked
@@ -1646,19 +1649,52 @@ public class principal extends javax.swing.JFrame {
             File dir = filechooser.getSelectedFile();
             boolean fueCreado = dir.mkdir();//make director
             if (fueCreado) {
-                JOptionPane.showMessageDialog(this, "Directorio creado exitosamente");
+                JOptionPane.showMessageDialog(this, "Archivo creado exitosamente");
             } else {
-                JOptionPane.showMessageDialog(this, "El directorio nos se creo");
+                JOptionPane.showMessageDialog(this, "No se creo el archivo");
             }
         }
-    
-
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
-/**
- * @param args the command line arguments
- */
-public static void main(String args[]) {
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        int cont = 0;
+        if (cont == 0) {
+            JFileChooser filechooser = new JFileChooser();
+            int seleccion = filechooser.showSaveDialog(this);
+            if (seleccion == JFileChooser.APPROVE_OPTION) {
+                File dir = filechooser.getSelectedFile();
+                boolean fueCreado = dir.mkdir();//make director
+                if (fueCreado) {
+                    JOptionPane.showMessageDialog(this, "Directorio creado exitosamente");
+                } else {
+                    JOptionPane.showMessageDialog(this, "El directorio nos se creo");
+                }
+                cont++;
+            } else {
+                if (seleccion == JFileChooser.APPROVE_OPTION) {
+                    File dir = filechooser.getSelectedFile();
+                    boolean fueCreado = dir.mkdir();//make director
+                    if (fueCreado) {
+                        JOptionPane.showMessageDialog(this, "Directorio creado exitosamente");
+                    } else {
+                        JOptionPane.showMessageDialog(this, "El directorio nos se creo");
+                    }
+                }
+            }
+        }
+
+
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+
+    
+    
+    
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -1670,35 +1706,23 @@ public static void main(String args[]) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
 
-                
-
-}
+                }
             }
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(principal.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-        
-
-} catch (InstantiationException ex) {
+        } catch (InstantiationException ex) {
             java.util.logging.Logger.getLogger(principal.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-        
-
-} catch (IllegalAccessException ex) {
+        } catch (IllegalAccessException ex) {
             java.util.logging.Logger.getLogger(principal.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-        
-
-} catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(principal.class
-
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 

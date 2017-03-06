@@ -6,6 +6,8 @@
 package franklin_garcia_lab6;
 
 import java.awt.Color;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
@@ -21,13 +23,13 @@ public class Personas {
     protected String nacionalidad;
     protected String lugar_nacimiento;
     protected String nombre;
-    protected Color color;
+    protected String color;
     protected ArrayList<Familiares> familiar;
     protected DefaultTreeModel arbol;
     public Personas() {
     }
 
-    public Personas(int edad, int ID, String nacionalidad, String lugar_nacimiento, String nombre, Color color, ArrayList<Familiares> familiar, DefaultTreeModel arbol) {
+    public Personas(int edad, int ID, String nacionalidad, String lugar_nacimiento, String nombre, String color, ArrayList<Familiares> familiar, DefaultTreeModel arbol) {
         this.edad = edad;
         this.ID = ID;
         this.nacionalidad = nacionalidad;
@@ -79,11 +81,11 @@ public class Personas {
         this.nombre = nombre;
     }
 
-    public Color getColor() {
+    public String getColor() {
         return color;
     }
 
-    public void setColor(Color color) {
+    public void setColor(String color) {
         this.color = color;
     }
 
@@ -107,6 +109,5 @@ public class Personas {
     public String toString() {
         return nombre;
     }
-
     
 }

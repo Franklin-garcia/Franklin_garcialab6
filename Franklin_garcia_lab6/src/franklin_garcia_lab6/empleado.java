@@ -26,7 +26,7 @@ public class empleado extends Personas {
     }
 
     public empleado(String seccion_trabajo, String entrada, String salida, int sueldo, String 
-            estado, int edad, int ID, String nacionalidad, String lugar_nacimiento, String nombre, Color color, ArrayList<Familiares> familiar, DefaultTreeModel arbol) {
+            estado, int edad, int ID, String nacionalidad, String lugar_nacimiento, String nombre, String color, ArrayList<Familiares> familiar, DefaultTreeModel arbol) {
         super(edad, ID, nacionalidad, lugar_nacimiento, nombre, color, familiar, arbol);
         this.seccion_trabajo = seccion_trabajo;
         this.entrada = entrada;

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package archivoz_clase2;
+package franklin_garcia_lab6;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -18,7 +18,7 @@ import java.util.Scanner;
  */
 public class administrarPersonas {
 
-    private static ArrayList<Persona> listaPersonas = new ArrayList();
+    private static ArrayList<Personas> listaPersonas = new ArrayList();
     private static File archivo = null,gente=null;
 
     public administrarPersonas(String Path) {
@@ -26,11 +26,11 @@ public class administrarPersonas {
         
     }
 
-    public ArrayList<Persona> getListaPersonas() {
+    public ArrayList<Personas> getListaPersonas() {
         return listaPersonas;
     }
 
-    public void setListapersonas(ArrayList<Persona> listapersonas) {
+    public void setListapersonas(ArrayList<Personas> listapersonas) {
         this.listaPersonas = listapersonas;
     }
 
@@ -48,7 +48,7 @@ public class administrarPersonas {
     }
 
     //extra mutador
-    public void setPersona(Persona p) {
+    public void setPersona(Personas p) {
         this.listaPersonas.add(p);
     }
 
@@ -56,13 +56,15 @@ public class administrarPersonas {
         FileWriter ft = null;
         BufferedWriter bw = null;
         try {
-            for (Persona t : listaPersonas) {
-                bw.write(t.getCodigo() + ";");
+            for (Personas t : listaPersonas) {
                 bw.write(t.getNombre() + ";");
                 bw.write(t.getEdad() + ";");
-                for (Hobbie h : t.getHobbies()) {
-                    bw.write(h.getId() + ",");
-                    bw.write(h.getDescripcion() + ",");
+                bw.write(t.getLugar_nacimiento() + ";");
+                bw.write(t.getNacionalidad() + ";");
+               
+                for (Familiares h : t.getFamiliar()) {
+                    bw.write(h.getNombre() + ",");
+                    bw.write(h.getLugar_nacimineto() + ",");
                 }
                 bw.write(",");
                 bw.write(t.getEdad() + ",");
@@ -88,20 +90,26 @@ public class administrarPersonas {
             sc.useDelimiter(";");
             while (sc.hasNext()) {
                 int c, e;
-                String n;
-                ArrayList<Hobbie> temp = new ArrayList();
+                String n,l,m,t;
+                ArrayList<Familiares> temp = new ArrayList();
                 c = sc.nextInt();
                 n = sc.next();
+                l = sc.next();
+                m = sc.next();
+                t = sc.next();
                 Scanner s2 = new Scanner(sc.next());
                 s2.useDelimiter(";");
+//int edad, int ID, String nacionalidad, String lugar_nacimineto, String nombre, Color color, Familiares Padre, ArrayList hijos                
                 while (s2.hasNext()) {
-                    temp.add(new Hobbie(s2.nextInt(), s2.next()));
-                }
+                    temp.add(new Familiares(s2.nextInt(),s2.nextInt(),s2.next(),s2.next(),s2.next(),s2.next(),null,null));
+//int edad, int ID, String nacionalidad, String lugar_nacimiento, String nombre, String color
+//, ArrayList<Familiares> familiar, DefaultTreeModel arbol
                 e = sc.nextInt();
-                listaPersonas.add(new Persona(c, n, e));
-                listaPersonas.get(listaPersonas.size() - 1).setHobbies(temp); 
+                listaPersonas.add(new Personas(c,e,n,l,m,t,null,null));
+                listaPersonas.get(listaPersonas.size() - 1).setFamiliar(temp); 
                 
                 }
+            }
         } catch (Exception ex) {
         } finally {
             sc.close();

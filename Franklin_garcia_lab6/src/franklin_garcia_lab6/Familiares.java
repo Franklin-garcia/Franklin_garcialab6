@@ -20,14 +20,14 @@ protected int ID;
 protected String nacionalidad;
 protected String lugar_nacimineto;
 protected String nombre;
-protected Color color;
+protected String color;
 protected Familiares Padre;
 protected ArrayList hijos;
 
     public Familiares() {
     }
 
-    public Familiares(int edad, int ID, String nacionalidad, String lugar_nacimineto, String nombre, Color color, Familiares Padre, ArrayList hijos) {
+    public Familiares(int edad, int ID, String nacionalidad, String lugar_nacimineto, String nombre, String color, Familiares Padre, ArrayList hijos) {
         this.edad = edad;
         this.ID = ID;
         this.nacionalidad = nacionalidad;
@@ -78,11 +78,11 @@ protected ArrayList hijos;
         this.nombre = nombre;
     }
 
-    public Color getColor() {
+    public String getColor() {
         return color;
     }
 
-    public void setColor(Color color) {
+    public void setColor(String color) {
         this.color = color;
     }
 
