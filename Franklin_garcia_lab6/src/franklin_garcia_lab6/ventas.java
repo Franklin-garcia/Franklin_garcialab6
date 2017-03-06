@@ -68,5 +68,10 @@ public class ventas {
     public void setFecha_compra(Date fecha_compra) {
         this.fecha_compra = fecha_compra;
     }
-   
+
+    @Override
+    public String toString() {
+        return nombre_cliente;
+    }
+  
 }

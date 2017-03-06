@@ -14,6 +14,7 @@ import java.util.Date;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JColorChooser;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
@@ -157,6 +158,11 @@ public class principal extends javax.swing.JFrame {
         nuevo_precio = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jPanel15 = new javax.swing.JPanel();
+        jLabel43 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tabla1 = new javax.swing.JTable();
+        cb_listar = new javax.swing.JComboBox<>();
+        jLabel44 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -168,6 +174,11 @@ public class principal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         tab_principal.setForeground(new java.awt.Color(0, 153, 0));
+        tab_principal.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                tab_principalStateChanged(evt);
+            }
+        });
 
         jPanel5.setBackground(new java.awt.Color(0, 153, 153));
 
@@ -1170,15 +1181,62 @@ public class principal extends javax.swing.JFrame {
 
         tab_principal.addTab("Modificar", jPanel11);
 
+        jPanel15.setBackground(new java.awt.Color(0, 153, 153));
+
+        jLabel43.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel43.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel43.setText("Lista de ventas");
+
+        tabla1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Cliente", "Empleado", "Cantidad", "Total", "Fecha"
+            }
+        ));
+        jScrollPane3.setViewportView(tabla1);
+
+        cb_listar.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cb_listarItemStateChanged(evt);
+            }
+        });
+
+        jLabel44.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel44.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel44.setText("Nombre de clientes");
+
         javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
         jPanel15.setLayout(jPanel15Layout);
         jPanel15Layout.setHorizontalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 991, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel15Layout.createSequentialGroup()
+                .addContainerGap(138, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 742, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(111, 111, 111))
+            .addGroup(jPanel15Layout.createSequentialGroup()
+                .addGap(393, 393, 393)
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel43)
+                    .addGroup(jPanel15Layout.createSequentialGroup()
+                        .addComponent(jLabel44)
+                        .addGap(48, 48, 48)
+                        .addComponent(cb_listar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel15Layout.setVerticalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 578, Short.MAX_VALUE)
+            .addGroup(jPanel15Layout.createSequentialGroup()
+                .addGap(49, 49, 49)
+                .addComponent(jLabel43)
+                .addGap(50, 50, 50)
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cb_listar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel44))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(69, 69, 69))
         );
 
         tab_principal.addTab("Reportes", jPanel15);
@@ -1196,6 +1254,11 @@ public class principal extends javax.swing.JFrame {
 
         jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_W, 0));
         jMenuItem3.setText("Salir ");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem3);
 
         jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, 0));
@@ -1293,14 +1356,14 @@ public class principal extends javax.swing.JFrame {
             }
         }
         cb_cliente.setModel(modelo3);
-        
+
         DefaultComboBoxModel modelo4
                 = new DefaultComboBoxModel();
         for (articulos t : lista_articulos) {
-                modelo4.addElement(t);
+            modelo4.addElement(t);
         }
         cb_articulos.setModel(modelo4);
-        
+
     }//GEN-LAST:event_tab_agregarStateChanged
 
 
@@ -1492,9 +1555,12 @@ public class principal extends javax.swing.JFrame {
         clientes = cb_cliente.getSelectedItem().toString();
         tipo_articulo = cb_articulos.getSelectedItem().toString();
         lista_ordenes.add(new ordenes(numero_articulos, dinero, atiende, clientes, tipo_articulo));
-        int total=0;
-        for (ordenes t:lista_ordenes) {
-            total+=t.getNumero_articulos();
+        int total = 0;
+        for (ordenes t : lista_ordenes) {
+            for (articulos y:lista_articulos) {
+                total+=t.getNumero_articulos()*y.getPrecio();
+            }
+
         }
         while (lista_ordenes.size() > 1) {
             lista_ventas.add(new ventas(clientes, atiende, numero_articulos, total, new Date()));
@@ -1502,6 +1568,29 @@ public class principal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton3MouseClicked
 
+    private void cb_listarItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_listarItemStateChanged
+        if (evt.getStateChange() == 2) {
+            ventas venta = (ventas) cb_listar.getSelectedItem();
+            Object[] newrow = {venta.getNombre_cliente(), venta.getNombre_atendio(), venta.getCantidad_articulos(), venta.total, venta.getFecha_compra()};
+            DefaultTableModel Modelo = (DefaultTableModel) tabla1.getModel();
+            Modelo.addRow(newrow);
+            tabla1.setModel(Modelo);
+        }
+    }//GEN-LAST:event_cb_listarItemStateChanged
+
+    private void tab_principalStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tab_principalStateChanged
+        if (this.tab_principal.getSelectedIndex() == 0) {
+            DefaultComboBoxModel Modelo = new DefaultComboBoxModel();
+            for (ventas Temp : lista_ventas) {
+                Modelo.addElement(Temp);
+            }
+            cb_listar.setModel(Modelo);
+        }
+    }//GEN-LAST:event_tab_principalStateChanged
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1560,6 +1649,7 @@ public class principal extends javax.swing.JFrame {
     private javax.swing.JCheckBox cb_frijoles;
     private javax.swing.JCheckBox cb_harina;
     private javax.swing.JCheckBox cb_huevo;
+    private javax.swing.JComboBox<String> cb_listar;
     private javax.swing.JCheckBox cb_mantequilla;
     private javax.swing.JComboBox<String> cb_nacionalidad_f;
     private javax.swing.JComboBox<String> cb_nacionalidad_p;
@@ -1608,6 +1698,8 @@ public class principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
+    private javax.swing.JLabel jLabel43;
+    private javax.swing.JLabel jLabel44;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -1637,6 +1729,7 @@ public class principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTree jTree1;
     private javax.swing.JTree jt_personas;
@@ -1652,6 +1745,7 @@ public class principal extends javax.swing.JFrame {
     private javax.swing.JTabbedPane tab_articulos;
     private javax.swing.JTabbedPane tab_personas;
     private javax.swing.JTabbedPane tab_principal;
+    private javax.swing.JTable tabla1;
     private javax.swing.JTextField tf_altura;
     private javax.swing.JTextField tf_dinero;
     private javax.swing.JTextField tf_entrada;
